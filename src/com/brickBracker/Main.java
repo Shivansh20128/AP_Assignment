@@ -25,6 +25,7 @@ public class Main {
             switch(option_no){
                 case 1:
                     System.out.println("Adding vaccine");
+                    Vaccines vaccine=new Vaccines();
                     //some function
                     break;
                 case 2:
