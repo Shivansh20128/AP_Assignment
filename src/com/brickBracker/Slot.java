@@ -10,6 +10,7 @@ public class Slot {
     String Hospital_ID;
     int no_of_slots;
     Vaccines vac;
+
     static ArrayList<ArrayList<Slot>> slot_array = new ArrayList<>();
 
     Scanner scan = new Scanner(System.in);
@@ -43,8 +44,7 @@ public class Slot {
 
             System.out.println("Slot added by Hospital "+this.Hospital_ID+ " for Day: "+new_slot.day_no+ ", Available Quantity: "+new_slot.quantity+" of Vaccine "+new_slot.vac.Name);
         }
-//        System.out.println(col.get(0).day_no+" "+ col.get(0).quantity+" "+col.get(0).vac.Name);
-//        System.out.println(col.get(1).day_no+" "+ col.get(1).quantity+" "+col.get(1).vac.Name);
+
         slot_array.add(col);
 
     }
@@ -61,7 +61,6 @@ public class Slot {
             }
 
             }
-//            System.out.println(vaccine_array.get(i).No_of_doses);
         }
     }
     public static void print_slots(String ID){

@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Citizens {
     String Name;
     int Age;
+    int due_date = 1;
     Vaccines vaccine;
     int No_of_doses=0;
     String Unique_id;
@@ -37,10 +38,28 @@ public class Citizens {
     public static void get_status(String ID){
         for(int i=0;i<citizen_array.size();i++){
             if(citizen_array.get(i).Unique_id.equals(ID)){
-                System.out.println(citizen_array.get(i).Status);
-                System.out.println("Vaccine Given: "+citizen_array.get(i).vaccine.Name);
-                System.out.println("Number of doses given: "+citizen_array.get(i).No_of_doses);
+                if(citizen_array.get(i).Status==null){
+                    System.out.println("Citizen Registered");
+                }else {
+                    System.out.println(citizen_array.get(i).Status);
+                    System.out.println("Vaccine Given: " + citizen_array.get(i).vaccine.Name);
+                    System.out.println("Number of doses given: " + citizen_array.get(i).No_of_doses);
+                    if(citizen_array.get(i).vaccine.gap_bw_doses!=0 && citizen_array.get(i).No_of_doses!=Vaccines.get_no_of_doses(citizen_array.get(i).vaccine)) {
+                        citizen_array.get(i).due_date = citizen_array.get(i).vaccine.gap_bw_doses + citizen_array.get(i).due_date;
+                        System.out.println("Next dose due date: " + citizen_array.get(i).due_date);
+                    }
+                }
             }
         }
     }
+
+    public static int get_due_date(String ID){
+        for(int i=0;i<Citizens.citizen_array.size();i++){
+            if(Citizens.citizen_array.get(i).Unique_id.equals(ID)){
+                return Citizens.citizen_array.get(i).due_date;
+            }
+        }
+        return 0;
+    }
+
 }

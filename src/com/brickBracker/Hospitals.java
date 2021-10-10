@@ -16,17 +16,13 @@ public class Hospitals {
     public Hospitals(){
         this.register();
     }
-    public static String getRandomNumberString() {
-        // It will generate 6 digit random Number.
-        // from 0 to 999999
+    public static String six_digit_number() {
         Random rnd = new Random();
         int number = rnd.nextInt(999999);
-
-        // this will convert any number sequence into 6 character.
         return String.format("%06d", number);
     }
     public void register() {
-        this.Unique_id=getRandomNumberString();
+        this.Unique_id=six_digit_number();
         hospital_array.add(this);
         System.out.print("Hospital Name: ");
         this.Name=scan.next();
@@ -48,9 +44,12 @@ public class Hospitals {
         for(index=0;index<Slot.slot_array.size();index++){
             if(Slot.slot_array.get(index).get(0).Hospital_ID.equals(ID)) {
                 for (int k = 0; k < Slot.slot_array.get(index).size(); k++) {
-                    System.out.println(k + "->" + "Day: " + Slot.slot_array.get(index).get(k).day_no + " Available Qty: " + Slot.slot_array.get(index).get(k).quantity+" Vaccine: " + Slot.slot_array.get(index).get(k).vac.Name);
+                    System.out.println(k +"-> Day: " + Slot.slot_array.get(index).get(k).day_no + " Available Qty: " + Slot.slot_array.get(index).get(k).quantity+" Vaccine: " + Slot.slot_array.get(index).get(k).vac.Name);
                 }
                 break;
+            }
+            else{
+                System.out.println("No Slots Available");
             }
 
         }
@@ -60,18 +59,14 @@ public class Hospitals {
         for(int l=0;l<Citizens.citizen_array.size();l++){
             if(Citizens.citizen_array.get(l).Unique_id.equals(citizen_ID)){
                 patient_name=Citizens.citizen_array.get(l).Name;
+                break;
             }
+
         }
         System.out.println(patient_name+" vaccinated with "+Slot.slot_array.get(index).get(num).vac.Name);
+        Slot.slot_array.get(index).get(num).quantity--;
         Citizens.citizen_array.get(index).vaccine=Slot.slot_array.get(index).get(num).vac;
         Citizens.citizen_array.get(index).No_of_doses++;
     }
-//    public static void print(){
-//        for(int i=0;i<hospital_array.size();i++){
-//            if(hospital_array.get(i).Name.equals("medanta")){
-//                System.out.println(hospital_array.get(i).Pincode);
-//            }
-////            System.out.println(vaccine_array.get(i).No_of_doses);
-//        }
-//    }
+
 }

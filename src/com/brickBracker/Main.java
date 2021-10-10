@@ -6,46 +6,42 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
         for(int i = 0; i < Slot.slot_array.size(); i++)  {
             Slot.slot_array.add(new ArrayList<Slot>());
         }
         System.out.println("CoWin Portal initialized...");
-        System.out.println("-------------------------------------");
-        System.out.println("1. Add Vaccine");
-        System.out.println("2. Register hospital");
-        System.out.println("3. Register Citizen");
-        System.out.println("4. Add slot for vaccination");
-        System.out.println("5. Book slot for vaccination");
-        System.out.println("6. List all slots for a hospital");
-        System.out.println("7. Check vaccination status");
-        System.out.println("8. Exit");
-        System.out.println("-------------------------------------");
+
         Scanner scan = new Scanner(System.in);
         int option_no;
         boolean exit=false;
         while(!exit){
+            System.out.println("-------------------------------------");
+            System.out.println("1. Add Vaccine");
+            System.out.println("2. Register hospital");
+            System.out.println("3. Register Citizen");
+            System.out.println("4. Add slot for vaccination");
+            System.out.println("5. Book slot for vaccination");
+            System.out.println("6. List all slots for a hospital");
+            System.out.println("7. Check vaccination status");
+            System.out.println("8. Exit");
+            System.out.println("-------------------------------------");
             option_no= scan.nextInt();
             switch(option_no){
                 case 1:
                     System.out.println("Adding vaccine");
                     new Vaccines();
-                    //some function
                     break;
                 case 2:
                     System.out.println("Registering a hospital");
                     new Hospitals();
-                    //some function
                     break;
                 case 3:
                     System.out.println("Registering a citizen");
                     new Citizens();
-                    //some function
                     break;
                 case 4:
                     System.out.println("Adding slot for vaccination");
                     new Slot();
-                    //some function
                     break;
                 case 5:
                     System.out.println("Booking slot for vaccination");
@@ -60,16 +56,25 @@ public class Main {
                             int search = scan.nextInt();
                             if(search==1){
                                 Hospitals.search_hosp(patient_ID);
-                                Citizens.citizen_array.get(i).Status="VACCINATED";
+                                if(Citizens.citizen_array.get(i).No_of_doses<Vaccines.get_no_of_doses(Citizens.citizen_array.get(i).vaccine)){
+                                    Citizens.citizen_array.get(i).Status="PARTIALLY VACCINATED";
+                                }else if(Citizens.citizen_array.get(i).No_of_doses==Vaccines.get_no_of_doses(Citizens.citizen_array.get(i).vaccine)){
+                                    Citizens.citizen_array.get(i).Status="FULLY VACCINATED";
+                                }
+
                             }else if(search==2){
                                 Vaccines.search_vaccine(patient_ID);
-                                Citizens.citizen_array.get(i).Status="VACCINATED";
+                                if(Citizens.citizen_array.get(i).No_of_doses<Vaccines.get_no_of_doses(Citizens.citizen_array.get(i).vaccine)){
+                                    Citizens.citizen_array.get(i).Status="PARTIALLY VACCINATED";
+                                }else if(Citizens.citizen_array.get(i).No_of_doses==Vaccines.get_no_of_doses(Citizens.citizen_array.get(i).vaccine)){
+                                    Citizens.citizen_array.get(i).Status="FULLY VACCINATED";
+                                }
+
                             }else if(search==3){
                                 break;
                             }
                         }
                     }
-                    //some function
                     break;
                 case 6:
                     System.out.println("List of all slots for a hospital");
@@ -80,22 +85,19 @@ public class Main {
                             Slot.print_slots(ID);
                         }
                     }
-                    //some function
                     break;
                 case 7:
                     System.out.println("Checking vaccination status");
                     System.out.print("Enter patient ID: ");
                     patient_ID = scan.next();
+
                     Citizens.get_status(patient_ID);
-                    //some function
                     break;
                 case 8:
-                    System.out.println("Exit");
+                    System.out.println("---END---");
                     exit=true;
                     break;
             }
         }
-        Slot.print();
-
     }
 }
