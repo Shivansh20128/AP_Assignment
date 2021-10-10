@@ -10,13 +10,13 @@ public class Slot {
     String Hospital_ID;
     int no_of_slots;
     Vaccines vac;
-    static ArrayList<ArrayList<Slot>> slot_array = new ArrayList<ArrayList<Slot>>();
+    static ArrayList<ArrayList<Slot>> slot_array = new ArrayList<>();
 
     Scanner scan = new Scanner(System.in);
     public Slot(){
         this.add_slot();
     }
-
+    public Slot(int x){  }
     public void add_slot() {
 
         System.out.print("Enter Hospital ID: ");
@@ -24,27 +24,24 @@ public class Slot {
         System.out.print("Enter number of Slots to be added: ");
         this.no_of_slots=scan.nextInt();
         ArrayList<Slot> col = new ArrayList<>(this.no_of_slots);
-        ArrayList<String> col1 = new ArrayList<>(this.no_of_slots);
+
         for(int k=0;k<this.no_of_slots;k++) {
-            col.add(this);
+            Slot new_slot = new Slot(k);
+            col.add(new_slot);
+            new_slot.Hospital_ID=this.Hospital_ID;
             System.out.print("Enter Day Number: ");
-            this.day_no = scan.nextInt();
+            new_slot.day_no = scan.nextInt();
             System.out.print("Enter Quantity: ");
-            this.quantity = scan.nextInt();
+            new_slot.quantity = scan.nextInt();
             System.out.println("Select Vaccine");
             for (int i = 0; i < Vaccines.vaccine_array.size(); i++) {
                 System.out.println(i + ". " + Vaccines.vaccine_array.get(i).Name);
             }
             int pos = scan.nextInt();
-            this.vac = Vaccines.vaccine_array.get(pos);
+            new_slot.vac = Vaccines.vaccine_array.get(pos);
 
-            col1.add("Day: "+this.day_no+" Vaccine: "+this.vac.Name+" Available Qty: "+this.quantity);
-            System.out.println(col1.get(0));
-            if(col.size()>1){
-                System.out.println(col1.get(1));
-            }
 
-            System.out.println("Slot added by Hospital "+this.Hospital_ID+ " for Day: "+this.day_no+ ", Available Quantity: "+this.quantity+" of Vaccine "+this.vac.Name);
+            System.out.println("Slot added by Hospital "+this.Hospital_ID+ " for Day: "+new_slot.day_no+ ", Available Quantity: "+new_slot.quantity+" of Vaccine "+new_slot.vac.Name);
         }
 //        System.out.println(col.get(0).day_no+" "+ col.get(0).quantity+" "+col.get(0).vac.Name);
 //        System.out.println(col.get(1).day_no+" "+ col.get(1).quantity+" "+col.get(1).vac.Name);

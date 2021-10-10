@@ -49,20 +49,23 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("Booking slot for vaccination");
-                    System.out.println("Enter Patient Unique ID: ");
+                    System.out.print("Enter Patient Unique ID: ");
                     String patient_ID = scan.next();
                     for(int i=0;i<Citizens.citizen_array.size();i++){
                         if(Citizens.citizen_array.get(i).Unique_id.equals(patient_ID)){
                             System.out.println("1. Search by area");
                             System.out.println("2. Search by Vaccine");
                             System.out.println("3. Exit");
-                            System.out.print("Enter option");
+                            System.out.print("Enter option: ");
                             int search = scan.nextInt();
                             if(search==1){
                                 Hospitals.search_hosp(patient_ID);
                                 Citizens.citizen_array.get(i).Status="VACCINATED";
                             }else if(search==2){
-
+                                Vaccines.search_vaccine(patient_ID);
+                                Citizens.citizen_array.get(i).Status="VACCINATED";
+                            }else if(search==3){
+                                break;
                             }
                         }
                     }

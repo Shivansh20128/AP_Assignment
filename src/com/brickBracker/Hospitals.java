@@ -48,10 +48,11 @@ public class Hospitals {
         for(index=0;index<Slot.slot_array.size();index++){
             if(Slot.slot_array.get(index).get(0).Hospital_ID.equals(ID)) {
                 for (int k = 0; k < Slot.slot_array.get(index).size(); k++) {
-                    System.out.println(index + "->" + "Day: " + Slot.slot_array.get(index).get(k).day_no + " Vaccine: " + Slot.slot_array.get(index).get(k).vac.Name + " Available Qty: " + Slot.slot_array.get(index).get(k).quantity);
+                    System.out.println(k + "->" + "Day: " + Slot.slot_array.get(index).get(k).day_no + " Available Qty: " + Slot.slot_array.get(index).get(k).quantity+" Vaccine: " + Slot.slot_array.get(index).get(k).vac.Name);
                 }
+                break;
             }
-            break;
+
         }
         System.out.print("Choose slot: ");
         int num = scan.nextInt();
@@ -62,7 +63,7 @@ public class Hospitals {
             }
         }
         System.out.println(patient_name+" vaccinated with "+Slot.slot_array.get(index).get(num).vac.Name);
-        Citizens.citizen_array.get(index).vaccine.Name=Slot.slot_array.get(index).get(num).vac.Name;
+        Citizens.citizen_array.get(index).vaccine=Slot.slot_array.get(index).get(num).vac;
         Citizens.citizen_array.get(index).No_of_doses++;
     }
 //    public static void print(){

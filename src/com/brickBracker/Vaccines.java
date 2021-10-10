@@ -6,6 +6,8 @@ import java.util.Scanner;
 public class Vaccines {
     static Scanner scan = new Scanner(System.in);
     String Name;
+    static int index;
+    static String patient_name;
     int No_of_doses;
     int gap_bw_doses;
     static ArrayList<Vaccines> vaccine_array = new ArrayList<Vaccines>();
@@ -26,9 +28,9 @@ public class Vaccines {
     public static void search_vaccine(String citizen_ID){
         System.out.print("Enter Vaccine name: ");
         String name=scan.next();
-        for(int j=0;j<hospital_array.size();j++){
-            if(hospital_array.get(j).Pincode==pin){
-                System.out.println(hospital_array.get(j).Unique_id+" "+ hospital_array.get(j).Name);
+        for(int j=0;j<vaccine_array.size();j++){
+            if(vaccine_array.get(j).Name.equals(name)){
+                System.out.println(Hospitals.hospital_array.get(j).Unique_id+" "+ Hospitals.hospital_array.get(j).Name);
             }
         }
         System.out.print("Enter hospital ID: ");
@@ -39,8 +41,10 @@ public class Vaccines {
                 for (int k = 0; k < Slot.slot_array.get(index).size(); k++) {
                     System.out.println(index + "->" + "Day: " + Slot.slot_array.get(index).get(k).day_no + " Vaccine: " + Slot.slot_array.get(index).get(k).vac.Name + " Available Qty: " + Slot.slot_array.get(index).get(k).quantity);
                 }
+                break;
             }
-            break;
+            else System.out.println("No Slots available");
+
         }
         System.out.print("Choose slot: ");
         int num = scan.nextInt();
