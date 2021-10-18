@@ -29,10 +29,10 @@ public class BackPack_Portal {
                 System.out.print("Choose id: ");
                 int instructor_choice = scan.nextInt();
                 if(instructor_choice==0){
-                    I0.login(this,I0,instructor_choice);
+                    I0.login(this,I0,instructor_choice,S0,S1,S2);
                 }
                 else if(instructor_choice==1){
-                    I1.login(this,I1,instructor_choice);
+                    I1.login(this,I1,instructor_choice,S0,S1,S2);
                 }
                 else{
                     System.out.println("Wrong id!");
@@ -41,6 +41,24 @@ public class BackPack_Portal {
                 break;
             case 2:
                 System.out.println("Students");
+                System.out.println("Students:\n" +
+                                   "0 - S0\n" +
+                                   "1 - S1\n" +
+                                   "2 - S2");
+                System.out.print("Choose id: ");
+                int student_choice = scan.nextInt();
+                if(student_choice==0){
+                    S0.login(this,S0,student_choice);
+                }
+                else if(student_choice==1){
+                    S1.login(this,S1,student_choice);
+                }
+                else if(student_choice==2){
+                    S2.login(this,S2,student_choice);
+                }
+                else{
+                    System.out.println("Wrong id!");
+                }
                 // more functions
                 break;
             case 3:
