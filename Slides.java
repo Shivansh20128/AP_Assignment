@@ -1,17 +1,16 @@
 package com.brickBracker;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
+
 
 public class Slides {
-    private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     Scanner scan = new Scanner(System.in).useDelimiter("\n");
     private Slides _slide;
     public String _topic;
     public String _content;
-    public String date_time;
+    public Date date_time;
     private int no_of_slides;
     public Instructor _giver;
 
@@ -19,6 +18,10 @@ public class Slides {
         this.add_slide(ins);
     }
     private Slides(){ }
+    public Date set_upload_date(){
+        date_time=java.util.Calendar.getInstance().getTime();
+        return date_time;
+    }
     private void add_slide(Instructor giver) {
         ArrayList<Slides> ver_list = new ArrayList<>();
         Instructor.slides_array.add(ver_list);
@@ -26,8 +29,8 @@ public class Slides {
         String name = scan.next();
         System.out.print("Enter number of slides: ");
         this.no_of_slides = scan.nextInt();
+        this.date_time=set_upload_date();
         System.out.println("Enter content of slides");
-        LocalDateTime now = LocalDateTime.now();
         for(int i=0;i<this.no_of_slides;i++){
             Slides new_slide = new Slides();
             new_slide._topic=name;
@@ -35,7 +38,6 @@ public class Slides {
             new_slide._content= scan.next();
             ver_list.add(new_slide);
             new_slide._giver=giver;
-            new_slide.date_time = dtf.format(now);
         }
 
 

@@ -1,8 +1,9 @@
 package com.brickBracker;
 
 public interface User {
-    public void View_lectures();
-    public void View_assessments();
-    public void View_comments();
-    public void add_comments();
+    int id=0;
+    void View_lectures();
+    void View_assessments();
+    void View_comments(Student x, Student y, Student z, Instructor a, Instructor b);
+    void add_comments();
 }

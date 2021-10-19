@@ -17,6 +17,9 @@ public class BackPack_Portal {
     }
 
     public void login() {
+        S0.id=0;
+        S1.id=1;
+        S2.id=2;
         System.out.println("1.Enter as Instructor");
         System.out.println("2.Enter as Student");
         System.out.println("3.Exit");
@@ -29,15 +32,15 @@ public class BackPack_Portal {
                 System.out.print("Choose id: ");
                 int instructor_choice = scan.nextInt();
                 if(instructor_choice==0){
-                    I0.login(this,I0,instructor_choice,S0,S1,S2);
+
+                    I0.login(this,I0,instructor_choice,S0,S1,S2,I0,I1);
                 }
                 else if(instructor_choice==1){
-                    I1.login(this,I1,instructor_choice,S0,S1,S2);
+                    I1.login(this,I1,instructor_choice,S0,S1,S2,I0,I1);
                 }
                 else{
                     System.out.println("Wrong id!");
                 }
-                // more functions
                 break;
             case 2:
                 System.out.println("Students");
@@ -48,18 +51,17 @@ public class BackPack_Portal {
                 System.out.print("Choose id: ");
                 int student_choice = scan.nextInt();
                 if(student_choice==0){
-                    S0.login(this,S0,student_choice);
+                    S0.login(this,S0,student_choice,S0,S1,S2,I0,I1);
                 }
                 else if(student_choice==1){
-                    S1.login(this,S1,student_choice);
+                    S1.login(this,S1,student_choice,S0,S1,S2,I0,I1);
                 }
                 else if(student_choice==2){
-                    S2.login(this,S2,student_choice);
+                    S2.login(this,S2,student_choice,S0,S1,S2,I0,I1);
                 }
                 else{
                     System.out.println("Wrong id!");
                 }
-                // more functions
                 break;
             case 3:
                 System.out.println("---End---");
