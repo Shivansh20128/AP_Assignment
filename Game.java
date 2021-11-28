@@ -1,176 +1,147 @@
 package com.brickBracker;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Game {
-    ArrayList<Tile> carpet = new ArrayList<>();
-    ArrayList<SoftToy> bucket = new ArrayList<>();
+    Random rand = new Random();
+    private final ArrayList<Tile> carpet = new ArrayList<>();
+    private final ArrayList<SoftToy> bucket = new ArrayList<>();
+    private final ArrayList<Tile> tiles = new ArrayList<>();
+    private final String[] list = new String[]{"first","second","third","fourth","fifth"};
+    static ArrayList<SoftToy> toys = new ArrayList<>();
+    private final String[] toy_names = new String[]{"Fluffy bear", "Remote car", "Legos", "Doll", "Mr. Potato Head",
+            "Teddy bear", "Minions", "Mickey Mouse","GI Joe","Ninja Hattori","Doraemon","Spiderman",
+            "Remote Control Helicopter","Kung Fu Panda","Shinchan","Stuffed Unicorn","Soft rabbit",
+            "Stuffed big Tiger","Jumbo The Elephant","Smooth Shivansh"};
     Scanner scan = new Scanner(System.in).useDelimiter("\n");
     Player boy = new Player();
     public Game(){
-        Tile tile1 = new Tile();
-        SoftToy toy1 = new SoftToy();
-        toy1.setToy_name("Fluffy bear");
-        tile1.setPosition(1);
-        tile1.setToy(toy1);
-
-        Tile tile2 = new Tile();
-        SoftToy toy2 = new SoftToy();
-        toy2.setToy_name("Remote car");
-        tile2.setPosition(2);
-        tile2.setToy(toy2);
-
-        Tile tile3 = new Tile();
-        SoftToy toy3 = new SoftToy();
-        toy3.setToy_name("Legos");
-        tile3.setPosition(3);
-        tile3.setToy(toy3);
-
-        Tile tile4 = new Tile();
-        SoftToy toy4 = new SoftToy();
-        toy4.setToy_name("Doll");
-        tile4.setPosition(4);
-        tile4.setToy(toy4);
-
-        Tile tile5 = new Tile();
-        SoftToy toy5 = new SoftToy();
-        toy5.setToy_name("Mr. Potato head");
-        tile5.setPosition(5);
-        tile5.setToy(toy5);
-
-        Tile tile6 = new Tile();
-        SoftToy toy6 = new SoftToy();
-        toy6.setToy_name("Teddy bear");
-        tile6.setPosition(6);
-        tile6.setToy(toy6);
-
-        Tile tile7 = new Tile();
-        SoftToy toy7 = new SoftToy();
-        toy7.setToy_name("Minions");
-        tile7.setPosition(7);
-        tile7.setToy(toy7);
-
-        Tile tile8 = new Tile();
-        SoftToy toy8 = new SoftToy();
-        toy8.setToy_name("Mickey Mouse");
-        tile8.setPosition(8);
-        tile8.setToy(toy8);
-
-        Tile tile9 = new Tile();
-        SoftToy toy9 = new SoftToy();
-        toy9.setToy_name("Ninja Hattori");
-        tile9.setPosition(9);
-        tile9.setToy(toy9);
-
-        Tile tile10 = new Tile();
-        SoftToy toy10 = new SoftToy();
-        toy10.setToy_name("GI Joe");
-        tile10.setPosition(10);
-        tile10.setToy(toy10);
-
-        Tile tile11 = new Tile();
-        SoftToy toy11 = new SoftToy();
-        toy11.setToy_name("Doraemon");
-        tile11.setPosition(11);
-        tile11.setToy(toy11);
-
-        Tile tile12 = new Tile();
-        SoftToy toy12 = new SoftToy();
-        toy12.setToy_name("Water Guns");
-        tile12.setPosition(12);
-        tile12.setToy(toy12);
-
-        Tile tile13 = new Tile();
-        SoftToy toy13 = new SoftToy();
-        toy13.setToy_name("Remote control Helicopter");
-        tile13.setPosition(13);
-        tile13.setToy(toy13);
-
-        Tile tile14 = new Tile();
-        SoftToy toy14 = new SoftToy();
-        toy14.setToy_name("Kung Fu Panda");
-        tile14.setPosition(14);
-        tile14.setToy(toy14);
-
-        Tile tile15 = new Tile();
-        SoftToy toy15 = new SoftToy();
-        toy15.setToy_name("Shinchan");
-        tile15.setPosition(15);
-        tile15.setToy(toy15);
-
-        Tile tile16 = new Tile();
-        SoftToy toy16 = new SoftToy();
-        toy16.setToy_name("Stuffed Unicorn");
-        tile16.setPosition(16);
-        tile16.setToy(toy16);
-
-        Tile tile17 = new Tile();
-        SoftToy toy17 = new SoftToy();
-        toy17.setToy_name("Soft Rabbit");
-        tile17.setPosition(17);
-        tile17.setToy(toy17);
-
-        Tile tile18 = new Tile();
-        SoftToy toy18 = new SoftToy();
-        toy18.setToy_name("Stuffed big Tiger");
-        tile18.setPosition(18);
-        tile18.setToy(toy18);
-
-        Tile tile19 = new Tile();
-        SoftToy toy19 = new SoftToy();
-        toy19.setToy_name("Jumbo The Elephant");
-        tile19.setPosition(19);
-        tile19.setToy(toy19);
-
-        Tile tile20 = new Tile();
-        SoftToy toy20 = new SoftToy();
-        toy20.setToy_name("Smooth Shivansh");
-        tile20.setPosition(20);
-        tile20.setToy(toy20);
-
-        carpet.add(tile1);
-        carpet.add(tile2);
-        carpet.add(tile3);
-        carpet.add(tile4);
-        carpet.add(tile5);
-        carpet.add(tile6);
-        carpet.add(tile7);
-        carpet.add(tile8);
-        carpet.add(tile9);
-        carpet.add(tile10);
-        carpet.add(tile11);
-        carpet.add(tile12);
-        carpet.add(tile13);
-        carpet.add(tile14);
-        carpet.add(tile15);
-        carpet.add(tile16);
-        carpet.add(tile17);
-        carpet.add(tile18);
-        carpet.add(tile19);
-        carpet.add(tile20);
-
+        for(int i=0;i<20;i++){
+            tiles.add(i,new Tile());
+            SoftToy st =toys.get(i);
+            String name = toy_names[i];
+            st.setToy_name(name);
+            tiles.get(i).setPosition(i+1);
+            carpet.add(tiles.get(i));
+        }
     }
-    public void play(){
+    public void play() {
         System.out.println("Game is ready!");
-        System.out.print("Hit enter for your first hop.");
-        for(int i=0;i<5;i++) {
-            String enter  = scan.next();
+        for(int i=0;i<5;i++){
+            System.out.print("Hit enter for your "+list[i]+" hop.");
+            scan.next();
             int x = boy.hop();
             boy.set_position(x);
+            if(boy.get_position()==21){
+                System.out.println("You are too energetic and zoomed past all the tiles. Muddy Puddle Splash!");
+            }
             for(int j=0;j<20;j++){
                 if(boy.get_position()==carpet.get(j).getPosition() && boy.get_position()%2==0){
-                    bucket.add(carpet.get(j).getToy());
+                    try {
+                        SoftToy toy = carpet.get(j).getToy();
+                        SoftToy cloned_toy = toy.clone();
+                        bucket.add(cloned_toy);
+                        System.out.println("You won a " + toy_names[j] + " soft toy.");
+                    }catch(CloneNotSupportedException cnse){
+                        System.out.println("Something is wrong, clone could not be made!");
+                    }
                 }
                 else if(boy.get_position()==carpet.get(j).getPosition()){
-                    System.out.println("Question answer round! Integers or Strings?");
+                    System.out.println("Question answer round! Integer or String?");
+                    boolean taken=false;
+                    while(!taken){
+                        String option = scan.next();
+                        if (option.equals("integer")) {
+                            taken=true;
+                            if (question_integer()) {
+                                try {
+                                    SoftToy toy = carpet.get(j).getToy();
+                                    SoftToy cloned_toy = toy.clone();
+                                    bucket.add(cloned_toy);
+                                    System.out.println("You won a " + toy_names[j] + " soft toy.");
+                                } catch (CloneNotSupportedException cnse) {
+                                    System.out.println("Something is wrong, clone could not be made!");
+                                }
+                            } else {
+                                System.out.println("Incorrect answer");
+                            }
+
+                        } else if (option.equals("string")) {
+                            taken=true;
+                            if (question_string()) {
+                                try {
+                                    SoftToy toy = carpet.get(j).getToy();
+                                    SoftToy cloned_toy = toy.clone();
+                                    bucket.add(cloned_toy);
+                                    System.out.println("You won a " + toy_names[j] + " soft toy.");
+                                } catch (CloneNotSupportedException cnse) {
+                                    System.out.println("Something is wrong, clone could not be made!");
+                                }
+                            } else {
+                                System.out.println("Incorrect answer");
+                            }
+                        } else {
+                            System.out.println("Wrong input! Please enter string or integer for the question answer round");
+                        }
+                    }
                 }
             }
         }
-        for(int l=0;l< bucket.size();l++){
-            System.out.println(bucket.get(l).getToy_name());
+        System.out.println("Game Over!");
+        print_bucket();
+    }
+
+    private void print_bucket() throws ArrayIndexOutOfBoundsException{
+        System.out.println("Soft toys won by you are:");
+        try {
+            for (SoftToy softToy : bucket) {
+                System.out.println(softToy.getToy_name());
+            }
+        }catch(ArrayIndexOutOfBoundsException aioobe){
+            System.out.println("Exception :"+aioobe);
         }
     }
+
+    private String random_string(){
+        String set = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz";
+        StringBuilder str = new StringBuilder(4);
+        for(int i=0;i<4;i++){
+            int index = (int)(set.length() * Math.random());
+            str.append(set.charAt(index));
+        }
+        return str.toString();
+    }
+
+    private boolean question_integer() throws InputMismatchException{
+        int num1=rand.nextInt(1000);
+        int num2=rand.nextInt(1000);
+        boolean done = false;
+        do{
+            System.out.println("Calculate the result of "+num1+" divided by "+num2);
+            try{
+                int quotient= scan.nextInt();
+                done =true;
+                Generic <Integer> obj = new Generic<>(num1, num2);
+                int ans = obj.divide();
+                return quotient == ans;
+            }catch(InputMismatchException ime){
+                scan.next();
+                System.out.println("Input Mismatch exception. Please enter an integer.");
+            }
+        }while(!done);
+        return false;
+    }
+
+    private boolean question_string(){
+        String str1 = random_string();
+        String str2 = random_string();
+        System.out.println("Calculate the concatenation of strings "+str1+" and "+str2);
+        String answer = scan.next();
+        Generic <String> obj = new Generic<>(str1, str2);
+        String ans = obj.join();
+        return answer.equals(ans);
+    }
 }
-
-

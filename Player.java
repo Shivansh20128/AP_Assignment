@@ -6,7 +6,7 @@ public class Player {
     public Player(){ }
     public int hop(){
         int random_num = (int) (1 + (100*Math.random())%21);
-        System.out.println("Random number: "+ random_num);
+        System.out.println("You landed on tile "+ random_num);
         return random_num;
     }
 

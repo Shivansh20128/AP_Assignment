@@ -3,7 +3,11 @@ package com.brickBracker;
 public class Tile {
     private int position;
     private SoftToy toy;
-    public Tile(){ }
+    public Tile(){
+        SoftToy toy = new SoftToy();
+        Game.toys.add(toy);
+        this.setToy(toy);
+    }
 
     public int getPosition() {
         return position;
